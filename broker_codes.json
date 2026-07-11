@@ -1,0 +1,36 @@
+{
+  "_README": "Optometry/eyecare broker source registry. Mirrors the accounting TAM rig and dental TDPM broker_codes.json pattern. site_prefix TOM = The Optometry Market (feeds theoptometrymarket.com + theoptometrypracticemarket.com sibling). NEVER collides with dental's TDPM-, veterinary's TVM-, or accounting's TAM-. 'ref_prefix' is the source-scoped broker reference shown muted on cards (e.g. VPG #489479). 'aggregator: true' sources are treated like the blocked aggregators and purged by the normalizer.",
+  "site_prefix": "TOM",
+  "sources": {
+    "vpg": {
+      "broker_name": "Visionary Practice Group",
+      "broker_url": "https://visionarypracticegroup.com/listings/",
+      "ref_prefix": "VPG",
+      "aggregator": false
+    },
+    "practiceconcepts": {
+      "broker_name": "Practice Concepts",
+      "broker_url": "https://practiceconcepts.com/pages/practices-for-sale",
+      "ref_prefix": "PC",
+      "aggregator": false
+    },
+    "omni": {
+      "broker_name": "Omni Optometry Practice Group",
+      "broker_url": "https://omnipg-opto.com/listings.html",
+      "ref_prefix": "OMNI",
+      "aggregator": false
+    }
+  },
+  "rejected_sources": {
+    "_note": "Verified live but NOT used, with the honest reason. Documented so a future pass doesn't re-litigate them.",
+    "optometrypracticesales": "Duda-built site; only 1 clean 'Collections of $X' parses from the static HTML — the rest of the listing detail is in JS-hydrated Duda blocks that don't paginate. Too thin/unstructured for plain-fetch. Revisit with a headless browser.",
+    "thewilliamsway": "thewilliamsway.com/marketplace/ is a WordPress FSBO-support marketplace — 7 of 8 cards carry the 'fsbo' class (owner-listed). FSBO DOCTRINE (JI 2026-07-10, absolute): STEER CLEAR OF FSBOs everywhere. Excluded on principle, not scrapeability.",
+    "cleinman": "cleinman.com is primarily consulting/content; the one live optometric-practice detail page found was Calgary, AB (Canada). No dense US listings feed. Skip.",
+    "azoa": "azoa.org state-association classifieds — real but ~1-2 truly parseable US entries after nav noise; too thin to justify a dedicated module. Long-tail state AOAs (WA/PA/etc.) are the same. Revisit as a batch if the vertical grows.",
+    "optirova": "AGGREGATOR — 'Add your listing' + multi-vertical cross-source IDs. Blocklist pattern. Never scrape."
+  },
+  "blocked_aggregators": [
+    "bizbuysell", "bizquest", "loopnet", "dealstream", "businessbroker",
+    "practiceorbit", "provide", "tusk", "optirova"
+  ]
+}
